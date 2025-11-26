@@ -1,0 +1,4 @@
+{
+    "phpSniffer.standard": "PSR12",
+    "files.eol": "\n"
+}

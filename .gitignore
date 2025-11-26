@@ -1,0 +1,20 @@
+node_modules/
+
+# Backend (Bedrock) - see backend/.gitignore for detailed rules
+backend/vendor/
+backend/web/wp/
+backend/web/app/plugins/
+backend/web/app/mu-plugins/*/
+backend/web/app/themes/*
+!backend/web/app/themes/barely-nothing/
+backend/web/app/uploads/
+backend/.env
+backend/auth.json
+
+# Keep gitkeep files
+!backend/web/app/plugins/.gitkeep
+!backend/web/app/themes/.gitkeep
+!backend/web/app/uploads/.gitkeep
+
+
+backend/web/app/wflogs/

@@ -1,0 +1,222 @@
+@import "tailwindcss";
+
+@theme {
+    --font-sans: Geist, ui-sans-serif, system-ui, sans-serif;
+
+    /* Dark mode colors */
+    --color-background: #0a0a0a;
+    --color-surface: #121212;
+    --color-surface-elevated: #1e1e1e;
+
+    --color-primary: #e0e0e0;
+    --color-secondary: #b0b0b0;
+    --color-tertiary: #888888;
+
+    --color-border: #2a2a2a;
+    --color-border-hover: #444444;
+
+    /* Keep your blue accent */
+    --color-blue-400: #2589FE;
+    --color-blue-500: #0070F3;
+    --color-blue-600: #2F6FEB;
+
+    /* Additional utility colors */
+    --color-success: #10b981;
+    --color-warning: #f59e0b;
+    --color-error: #ef4444;
+}
+
+/* Container customization */
+.container {
+    margin-inline: auto;
+    padding-inline: 1rem;
+    max-width: 100%;
+}
+
+@media (min-width: 640px) {
+    .container {
+        max-width: 640px;
+        padding-inline: 2rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 768px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        max-width: 1024px;
+        padding-inline: 4rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .container {
+        max-width: 1280px;
+        padding-inline: 5rem;
+    }
+}
+
+@media (min-width: 1536px) {
+    .container {
+        max-width: 1536px;
+        padding-inline: 6rem;
+    }
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.page-enter-active,
+.page-leave-active {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.page-enter-from {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.page-leave-to {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+@media (max-width: 1023px) {
+
+    /* Fix Reka UI popper z-index */
+    [data-reka-popper-content-wrapper] {
+        z-index: 10 !important;
+    }
+}
+
+
+/* Custom scrollbar styles for sub-elements */
+
+[data-reka-popper-content-wrapper] {
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+    }
+
+    *::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    *::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
+    }
+
+    *::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
+}
+
+.wysiwyg-content {
+    h2 {
+        @apply text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl mb-8 font-bold;
+    }
+
+    a {
+        @apply opacity-75 hover:opacity-100 hover:underline;
+    }
+}
+
+/* Override Reka UI scroll lock styles */
+body {
+    padding-right: 0 !important;
+    margin-right: 0 !important;
+    overflow: auto !important;
+    pointer-events: auto !important;
+}
+
+.nav-link {
+    position: relative;
+
+    &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: -.5rem;
+        left: 50%;
+        transform: translateX(-50%) translateY(.5rem);
+        opacity: 0;
+        width: .3rem;
+        height: .3rem;
+        border-radius: 50%;
+        background-color: var(--color-primary);
+        transition: .15s transform;
+    }
+
+    &.router-link-active {
+        &:after {
+            animation: pulse 1.5s infinite;
+            opacity: .75;
+            transform: translateX(-50%) translateY(0);
+        }
+    }
+}
+
+/* Modal animations */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes scale-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scale-out {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
