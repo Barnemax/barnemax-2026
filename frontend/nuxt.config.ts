@@ -157,11 +157,8 @@ export default defineNuxtConfig({
     siteKey: process.env.NUXT_TURNSTILE_SITE_KEY,
   },
   ui: {
-    // Site is dark-only — no need for light/dark mode color variants
     colorMode: false,
     theme: {
-      // Only generate CSS for the two semantic roles Nuxt UI actually needs
-      // internally. secondary/success/info/warning/error are unused.
       colors: ['primary', 'neutral'],
     },
   },

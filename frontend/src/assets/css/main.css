@@ -3,27 +3,10 @@
 @theme {
     --font-sans: Geist, ui-sans-serif, system-ui, sans-serif;
 
-    /* Dark mode colors */
     --color-background: #0a0a0a;
-    --color-surface: #121212;
-    --color-surface-elevated: #1e1e1e;
-
     --color-primary: #e0e0e0;
     --color-secondary: #b0b0b0;
-    --color-tertiary: #888888;
-
     --color-border: #2a2a2a;
-    --color-border-hover: #444444;
-
-    /* Keep your blue accent */
-    --color-blue-400: #2589FE;
-    --color-blue-500: #0070F3;
-    --color-blue-600: #2F6FEB;
-
-    /* Additional utility colors */
-    --color-success: #10b981;
-    --color-warning: #f59e0b;
-    --color-error: #ef4444;
 }
 
 /* Container customization */
