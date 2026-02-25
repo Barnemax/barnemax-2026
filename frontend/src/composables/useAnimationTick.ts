@@ -65,16 +65,8 @@ export function useAnimationTick(callback: TickCallback, interval = 300) {
     observer?.disconnect()
   })
 
-  const observe = (el: HTMLElement | null) => {
-    if (el && observer) {
-      observer.disconnect()
-      observer.observe(el)
-    }
-  }
-
   return {
     elementRef,
     isInViewport,
-    observe,
   }
 }

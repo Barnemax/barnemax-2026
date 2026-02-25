@@ -170,23 +170,20 @@ const resize = () => {
   }
 }
 
-onMounted(() => {
-  // Delay initialization until after page transition
-  setTimeout(() => {
-    isReady.value = true
-    resize()
-    scheduleNextGlow()
-  }, 350)
+// Matches the Nuxt page-enter transition duration so the canvas starts
+// only after the incoming page content has finished animating in.
+const INIT_DELAY_MS = 350
 
+onMounted(() => {
   window.addEventListener('resize', resize)
   document.addEventListener('visibilitychange', onVisibilityChange)
 
-  // Cache context
-  const canvas = canvasRef.value
-  if (canvas) {
-    canvasCtx = canvas.getContext('2d')
-  }
-  animationId = requestAnimationFrame(animate)
+  setTimeout(() => {
+    isReady.value = true
+    resize() // sets canvasCtx and sizes the canvas
+    scheduleNextGlow()
+    animationId = requestAnimationFrame(animate)
+  }, INIT_DELAY_MS)
 })
 
 onUnmounted(() => {

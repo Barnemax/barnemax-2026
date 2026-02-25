@@ -1,3 +1,11 @@
+import { z } from 'zod'
+
+const contactSchema = z.object({
+  email: z.email(),
+  subject: z.string().min(1).max(200),
+  message: z.string().min(10).max(5000),
+})
+
 // Simple HTML escape for email content
 function escapeHtml(text: string): string {
   return text
@@ -9,15 +17,18 @@ function escapeHtml(text: string): string {
 }
 
 export default defineEventHandler(async (event) => {
-  const { email, subject, message } = await readBody(event)
+  const body = await readBody(event)
   const config = useRuntimeConfig()
 
-  if (!email || !subject || !message) {
+  const result = contactSchema.safeParse(body)
+  if (!result.success) {
     throw createError({
       statusCode: 400,
-      statusMessage: 'Missing required fields',
+      statusMessage: 'Invalid input',
     })
   }
+
+  const { email, subject, message } = result.data
 
   // Escape user input to prevent HTML injection
   const sanitizedEmail = escapeHtml(email)
@@ -38,7 +49,7 @@ export default defineEventHandler(async (event) => {
     body: JSON.stringify(mailArgs),
     headers: {
       'accept': 'application/json',
-      'api-key': config.brevoApiKey,
+      'api-key': config.brevoApiKey as string,
       'content-type': 'application/json',
     },
     method: 'POST',

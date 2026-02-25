@@ -2,7 +2,7 @@ import { hash } from 'ohash'
 
 export default defineCachedEventHandler(async (event) => {
   const config = useRuntimeConfig()
-  const { query, variables } = await readBody(event)
+  const { query, variables } = event.context.parsedBody
 
   const response = await fetch(config.wpGraphqlUrl as string, {
     body: JSON.stringify({ query, variables }),
@@ -21,6 +21,7 @@ export default defineCachedEventHandler(async (event) => {
   maxAge: 3600 * 12,
   getKey: async (event) => {
     const body = await readBody(event)
+    event.context.parsedBody = body
     return hash(body)
   },
   shouldBypassCache: () => false,

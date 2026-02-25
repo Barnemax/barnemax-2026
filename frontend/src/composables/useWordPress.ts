@@ -8,7 +8,7 @@ export const useWordPress = () => {
     return await $fetch<T>('/api/graphql', {
       body: { query, variables },
       method: 'POST',
-    })
+    }) as T
   }
 
   const getHomepage = async (language: string = 'EN') => {
@@ -32,14 +32,16 @@ export const useWordPress = () => {
 
     const project = data.projects?.nodes?.[0] ?? null
 
-    // Get a random other project (excluding current)
+    // Pick a deterministic "other" project based on the current slug so the
+    // selection is stable under ISR caching rather than frozen at render time.
     const otherProjects = data.otherProjects?.nodes?.filter(p => p.slug !== actualSlug) ?? []
-    const randomOther = otherProjects.length > 0
-      ? otherProjects[Math.floor(Math.random() * otherProjects.length)]
+    const slugSum = actualSlug.split('').reduce((sum, c) => sum + c.charCodeAt(0), 0)
+    const otherProject = otherProjects.length > 0
+      ? otherProjects[slugSum % otherProjects.length]
       : null
 
     return {
-      otherProject: randomOther,
+      otherProject,
       project,
     }
   }

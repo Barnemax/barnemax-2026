@@ -3,7 +3,7 @@ export const useRouteHelpers = () => {
   const localePath = useLocalePath()
 
   const getProjectUrl = (slug: string) => {
-    const cleanSlug = locale.value === 'fr' ? slug.replace('-fr', '') : slug
+    const cleanSlug = locale.value === 'fr' ? slug.replace(/-fr$/, '') : slug
     return localePath({ name: 'projects-slug', params: { slug: cleanSlug } })
   }
 

@@ -33,7 +33,7 @@ const fields = computed(() => [
     label: t('contact.email.label'),
     name: 'email',
     placeholder: t('contact.email.placeholder'),
-    schema: z.string().email(t('contact.email.error')),
+    schema: z.email({ message: t('contact.email.error') }),
     type: 'text',
   },
   {
@@ -63,9 +63,11 @@ const state: Record<string, string> = reactive({ email: '', message: '', subject
 
 const isSubmitted = ref(false)
 const isSubmitting = ref(false)
+const errorMessage = ref<string | null>(null)
 
 async function onSubmit(event: FormSubmitEvent<Record<string, string>>) {
   isSubmitting.value = true
+  errorMessage.value = null
 
   // Need to validate Turnstile token here
   const bodyVerify = {
@@ -82,6 +84,7 @@ async function onSubmit(event: FormSubmitEvent<Record<string, string>>) {
 
   if (!response.ok) {
     isSubmitting.value = false
+    errorMessage.value = t('contact.errorMessage')
     return
   }
 
@@ -94,6 +97,7 @@ async function onSubmit(event: FormSubmitEvent<Record<string, string>>) {
 
   if (!emailResponse.ok) {
     isSubmitting.value = false
+    errorMessage.value = t('contact.errorMessage')
     return
   }
 
@@ -165,6 +169,9 @@ async function onSubmit(event: FormSubmitEvent<Record<string, string>>) {
             />
           </UFormField>
         </template>
+        <p v-if="errorMessage" class="text-red-500 text-sm text-center">
+          {{ errorMessage }}
+        </p>
         <UButton
           type="submit"
           :disabled="isSubmitting"

@@ -1,6 +1,6 @@
-const isMenuOpen = ref(false)
-
 export function useMobileMenu() {
+  const isMenuOpen = useState('mobileMenu', () => false)
+
   const open = () => {
     isMenuOpen.value = true
   }

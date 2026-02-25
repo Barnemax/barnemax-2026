@@ -37,6 +37,22 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
+    '/api/contact': {
+      security: {
+        rateLimiter: {
+          tokensPerInterval: 5,
+          interval: 300000, // 5 minutes
+        },
+      },
+    },
+    '/api/graphql': {
+      security: {
+        rateLimiter: {
+          tokensPerInterval: 30,
+          interval: 60000, // 1 minute
+        },
+      },
+    },
     '/': { isr: 3600 * 12 }, // 12 hours
     '/fr': { isr: 3600 * 12 },
     '/contact': { isr: 3600 * 12 },
@@ -139,5 +155,14 @@ export default defineNuxtConfig({
     addValidateEndpoint: true,
     secretKey: process.env.NUXT_TURNSTILE_SECRET_KEY,
     siteKey: process.env.NUXT_TURNSTILE_SITE_KEY,
+  },
+  ui: {
+    // Site is dark-only — no need for light/dark mode color variants
+    colorMode: false,
+    theme: {
+      // Only generate CSS for the two semantic roles Nuxt UI actually needs
+      // internally. secondary/success/info/warning/error are unused.
+      colors: ['primary', 'neutral'],
+    },
   },
 })
