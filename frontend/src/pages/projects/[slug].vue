@@ -203,7 +203,7 @@ watch(projectData, (project) => {
               close: 'static w-6 h-6 border-2 rounded-full flex items-center justify-center hover:bg-primary hover:text-background transition-colors',
               description: 'text-base',
               overlay: 'fixed inset-0 data-[state=open]:animate-[fade-in_200ms_ease-out] data-[state=closed]:animate-[fade-out_200ms_ease-in] bg-background/75',
-              content: 'bg-background text-primary lg:max-h-[90vh] max-w-95vw lg:max-w-[80vw] w-full divide-y-1 flex flex-col focus:outline-none data-[state=open]:animate-[scale-in_200ms_ease-out] data-[state=closed]:animate-[scale-out_200ms_ease-in] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible',
+              content: 'bg-background text-primary lg:max-h-[90vh] max-w-95vw lg:max-w-[80vw] w-full divide-y-1 flex flex-col focus:outline-none data-[state=open]:animate-[fade-in_200ms_ease-out] data-[state=closed]:animate-[fade-out_200ms_ease-in] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible',
             }"
             aria-describedby="undefined"
           >

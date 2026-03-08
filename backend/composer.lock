@@ -1351,15 +1351,15 @@
         },
         {
             "name": "wpackagist-plugin/seo-by-rank-math",
-            "version": "1.0.264.1",
+            "version": "1.0.265",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/seo-by-rank-math/",
-                "reference": "tags/1.0.264.1"
+                "reference": "tags/1.0.265"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/seo-by-rank-math.1.0.264.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/seo-by-rank-math.1.0.265.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -1387,15 +1387,15 @@
         },
         {
             "name": "wpackagist-plugin/wp-graphql",
-            "version": "2.9.0",
+            "version": "2.9.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wp-graphql/",
-                "reference": "tags/2.9.0"
+                "reference": "tags/2.9.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-graphql.2.9.0.zip"
+                "url": "https://downloads.wordpress.org/plugin/wp-graphql.2.9.1.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -1405,15 +1405,15 @@
         },
         {
             "name": "wpackagist-plugin/wpgraphql-acf",
-            "version": "2.4.1",
+            "version": "2.5.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wpgraphql-acf/",
-                "reference": "tags/2.4.1"
+                "reference": "tags/2.5.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wpgraphql-acf.2.4.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/wpgraphql-acf.2.5.1.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -1441,10 +1441,10 @@
         },
         {
             "name": "wpengine/advanced-custom-fields-pro",
-            "version": "6.7.0.2",
+            "version": "6.7.1",
             "dist": {
                 "type": "zip",
-                "url": "https://connect.advancedcustomfields.com/v2/plugins/composer_download?s=composer&p=pro&t=6.7.0.2"
+                "url": "https://connect.advancedcustomfields.com/v2/plugins/composer_download?s=composer&p=pro&t=6.7.1"
             },
             "require": {
                 "composer/installers": "~1.0 || ~2.0"

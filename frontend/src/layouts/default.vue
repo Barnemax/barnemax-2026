@@ -33,7 +33,7 @@ onUnmounted(() => {
         isMenuOpen ? 'bg-background' : 'bg-linear-to-b from-background from-50% to-transparent',
       ]"
     >
-      <div class="container mx-auto flex justify-between items-center">
+      <div class="container px-8 mx-auto flex justify-between items-center">
         <NuxtLink
           :to="localePath('/')"
           class="text-2xl font-bold tracking-wide hover:text-white flex items-center"
@@ -46,10 +46,9 @@ onUnmounted(() => {
     </header>
 
     <main
-      class="pb-20"
-      :class="isHomepage ? '' : 'pt-20'"
+      :class="isHomepage ? 'pb-20' : 'py-20'"
     >
-      <div class="container mx-auto px-4">
+      <div class="container mx-auto px-8">
         <Transition name="fade" mode="out-in">
           <div :key="locale">
             <slot />
