@@ -121,7 +121,7 @@ export default defineNuxtConfig({
   },
   schemaOrg: {
     identity: {
-      jobTitle: 'Web Developer',
+      jobTitle: 'Full-Stack Developer',
       name: 'Maxime Etchebarne',
       sameAs: [
         'https://github.com/barnemax',

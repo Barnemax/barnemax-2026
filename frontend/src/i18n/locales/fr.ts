@@ -39,7 +39,7 @@ export default {
       title: 'Niveau d\'informations souhaité ?',
       verbose: 'complet',
     },
-    tagline: 'développeur web',
+    tagline: 'développeur full stack',
   },
   menu: {
     contact: 'Contact',
