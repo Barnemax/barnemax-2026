@@ -13,12 +13,12 @@ export const useWordPress = () => {
 
   const getHomepage = async (language: string = 'EN') => {
     const data = await graphqlClient<HomepageResponse>(GET_HOMEPAGE, { language })
-    return data.pageBy.translation
+    return data.pageBy?.translation ?? null
   }
 
   const getPageBySlug = async (slug: string, language: string = 'EN') => {
     const data = await graphqlClient<PageResponse>(GET_PAGE_BY_SLUG, { language, slug })
-    return data.pageBy.translation
+    return data.pageBy?.translation ?? null
   }
 
   const getProjectBySlug = async (slug: string, language: string = 'EN') => {
@@ -49,8 +49,8 @@ export const useWordPress = () => {
   const getProjectsWithArchive = async (language: string = 'EN') => {
     const data = await graphqlClient<ProjectsWithArchiveResponse>(GET_PROJECTS_WITH_ARCHIVE, { language })
     return {
-      archive: data.contentType,
-      projects: data.projects.nodes,
+      archive: data.contentType ?? null,
+      projects: data.projects?.nodes ?? [],
     }
   }
 

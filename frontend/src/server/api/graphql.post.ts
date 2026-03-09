@@ -18,11 +18,11 @@ export default defineCachedEventHandler(async (event) => {
 
   return json.data
 }, {
-  maxAge: 3600 * 12,
   getKey: async (event) => {
     const body = await readBody(event)
     event.context.parsedBody = body
     return hash(body)
   },
+  maxAge: 3600 * 12,
   shouldBypassCache: () => false,
 })

@@ -173,6 +173,16 @@ watch(projectData, (project) => {
               <UIcon name="i-lucide-external-link" class="inline-block w-4 h-4 ml-2" />
             </NuxtLink>
           </div>
+          <div v-if="projectData.projectFields?.githubUrl">
+            <NuxtLink
+              :to="projectData.projectFields.githubUrl"
+              target="_blank"
+              class="inline-flex flex-row items-center hover:underline"
+            >
+              {{ t('projects.githubUrl') }}
+              <UIcon name="i-lucide-github" class="inline-block w-4 h-4 ml-2" />
+            </NuxtLink>
+          </div>
         </div>
       </div>
       <div class="lg:col-span-2">

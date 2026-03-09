@@ -2,8 +2,8 @@ import { z } from 'zod'
 
 const contactSchema = z.object({
   email: z.email(),
-  subject: z.string().min(1).max(200),
   message: z.string().min(10).max(5000),
+  subject: z.string().min(1).max(200),
 })
 
 // Simple HTML escape for email content

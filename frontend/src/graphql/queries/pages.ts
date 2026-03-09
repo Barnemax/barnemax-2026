@@ -61,6 +61,33 @@ const acfFields = `
         }
       }
     }
+    homeProjects {
+      titleProjects
+      highlightedProjects {
+        nodes {
+          id
+          slug
+          ... on Project {
+            title
+            excerpt
+            projectFields {
+              year
+            }
+            terms {
+              nodes {
+                id
+                name
+              }
+            }
+          }
+        }
+      }
+      linkToArchive {
+        target
+        title
+        url
+      }
+    }
   }
 `
 

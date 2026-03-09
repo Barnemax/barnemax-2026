@@ -201,6 +201,108 @@
             "graphql_non_null": 0
         },
         {
+            "key": "field_69af1cd1e9408",
+            "label": "Home projects",
+            "name": "home_projects",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "show_in_graphql": 1,
+            "graphql_description": "",
+            "graphql_field_name": "homeProjects",
+            "graphql_non_null": 0,
+            "sub_fields": [
+                {
+                    "key": "field_69af1ce5e9409",
+                    "label": "Title projects",
+                    "name": "title_projects",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "show_in_graphql": 1,
+                    "graphql_description": "",
+                    "graphql_field_name": "titleProjects",
+                    "graphql_non_null": 0
+                },
+                {
+                    "key": "field_69af1c7ecb63e",
+                    "label": "Highlighted projects",
+                    "name": "highlighted_projects",
+                    "aria-label": "",
+                    "type": "relationship",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "post_type": [
+                        "project"
+                    ],
+                    "post_status": "",
+                    "taxonomy": "",
+                    "filters": [
+                        "search"
+                    ],
+                    "return_format": "id",
+                    "min": "",
+                    "max": "",
+                    "allow_in_bindings": 0,
+                    "elements": "",
+                    "bidirectional": 0,
+                    "show_in_graphql": 1,
+                    "graphql_description": "",
+                    "graphql_field_name": "highlightedProjects",
+                    "graphql_connection_type": "one_to_many",
+                    "bidirectional_target": []
+                },
+                {
+                    "key": "field_69af1cefe940a",
+                    "label": "Link to archive",
+                    "name": "link_to_archive",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "allow_in_bindings": 0,
+                    "show_in_graphql": 1,
+                    "graphql_description": "",
+                    "graphql_field_name": "linkToArchive",
+                    "graphql_non_null": 0
+                }
+            ]
+        },
+        {
             "key": "field_6967fb89cb642",
             "label": "Introduction",
             "name": "introduction",
@@ -528,9 +630,10 @@
     "display_title": "",
     "show_in_graphql": 1,
     "graphql_field_name": "homepage",
-    "map_graphql_types_from_location_rules": 0,
+    "map_graphql_types_from_location_rules": 1,
     "graphql_types": [
-        "Page"
+        "Page",
+        "Template_Homepage"
     ],
-    "modified": 1770148911
+    "modified": 1773085245
 }

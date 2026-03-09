@@ -54,6 +54,20 @@ export interface Homepage extends DefaultWPStructure {
       }>
     }
     summary: SummaryColumn[]
+    homeProjects: {
+      titleProjects: string
+      highlightedProjects: {
+        nodes: Array<{
+          id: string
+          slug: string
+          title?: string
+          excerpt?: string
+          projectFields?: { year: number }
+          terms?: { nodes: Term[] }
+        }>
+      }
+      linkToArchive: AcfLink | null
+    }
   }
 }
 
@@ -73,7 +87,8 @@ export interface Project extends DefaultWPStructure {
       projectImage: AcfImage
     }>
     siteUrl?: string
-    year: string
+    githubUrl?: string
+    year: number
   }
   terms?: {
     nodes: Term[]

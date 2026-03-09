@@ -50,6 +50,7 @@ const acfFields = `
       }
     }
     siteUrl
+    githubUrl
     year
   }
 `

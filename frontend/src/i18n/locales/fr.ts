@@ -53,6 +53,7 @@ export default {
     designer: 'Design réalisé par :',
     filter: 'Filtrer par type',
     gallery: 'Galerie',
+    githubUrl: 'Voir le code sur GitHub',
     otherProject: 'Découvrir un autre projet',
     siteUrl: 'Voir le site',
     year: 'Réalisé en :',

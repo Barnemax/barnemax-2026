@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const { getProjectsWithArchive } = useWordPress()
 const { locale, t } = useI18n()
-const { getProjectUrl } = useRouteHelpers()
 
 const { data } = await useAsyncData(
   `projects-with-archive-${locale.value}`,
@@ -37,7 +36,7 @@ const filteredProjects = computed(() => {
   }
 
   return projects.sort((a, b) =>
-    (parseInt(b.projectFields?.year) || 0) - (parseInt(a.projectFields?.year) || 0),
+    (b.projectFields?.year ?? 0) - (a.projectFields?.year ?? 0),
   )
 })
 
@@ -91,28 +90,15 @@ if (archiveData.value?.seo) {
       v-if="filteredProjects.length"
       class="group/projects grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
     >
-      <NuxtLink
+      <ProjectCard
         v-for="project in filteredProjects"
         :key="project.id"
-        :aria-label="`View project ${project.title}`"
-        :to="getProjectUrl(project.slug)"
-        class="p-8 rounded-xl border hover:text-white transition-all block space-y-2 group-hover/projects:opacity-50 hover:opacity-100!"
-      >
-        <h3 class="text-3xl font-bold">{{ project.title }}</h3>
-        <div v-if="project.projectFields.year" class="font-bold opacity-50">{{ project.projectFields.year }}</div>
-        <div v-if="project.terms" class="flex flex-wrap gap-2 mt-3">
-          <TermBadge
-            v-for="term in project.terms.nodes"
-            :key="term.id"
-            :name="term.name"
-          />
-          <div
-            class="mt-2"
-            v-if="project.excerpt"
-            v-dompurify-html="project.excerpt"
-          />
-        </div>
-      </NuxtLink>
+        :slug="project.slug"
+        :title="project.title"
+        :excerpt="project.excerpt"
+        :year="project.projectFields.year"
+        :terms="project.terms"
+      />
     </div>
   </div>
 </template>

@@ -111,13 +111,15 @@ const sections = computed(() => {
                 <dt class="font-bold lg:text-right">
                   {{ item.label }}
                 </dt>
-                <dd class="mb-4 lg:mb-0">{{ item.value }}</dd>
+                <dd class="mb-4 lg:mb-0">
+                  {{ item.value }}
+                </dd>
               </template>
-              <dt>
-              </dt>
+              <dt />
               <dd class="flex flex-row flex-wrap gap-8 mt-4 pt-4 border-t border-primary/60">
                 <NuxtLink
-                  v-for="link in fact.links"
+                  v-for="(link, index) in fact.links"
+                  :key="index"
                   :href="link.link.url"
                   :target="link.link.target"
                   class="font-bold flex flex-row items-center hover:underline hover:text-white transition-colors"
@@ -135,7 +137,39 @@ const sections = computed(() => {
         </div>
       </div>
     </div>
-    <div 
+    <div
+      v-if="homePageData?.homepage?.homeProjects?.highlightedProjects?.nodes?.length"
+    >
+      <div class="container mx-auto px-8">
+        <div class="flex items-baseline justify-between mb-8">
+          <h2 class="text-2xl xl:text-3xl font-semibold opacity-60">
+            {{ homePageData.homepage.homeProjects.titleProjects }}
+          </h2>
+          <NuxtLink
+            v-if="homePageData.homepage.homeProjects.linkToArchive"
+            :href="homePageData.homepage.homeProjects.linkToArchive.url"
+            :target="homePageData.homepage.homeProjects.linkToArchive.target"
+            class="font-bold flex flex-row items-center hover:underline hover:text-white transition-colors"
+          >
+            {{ homePageData.homepage.homeProjects.linkToArchive.title }}
+            <UIcon name="i-lucide-link" class="inline-block w-4 h-4 ml-2" />
+          </NuxtLink>
+        </div>
+        <div class="group/projects grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <ProjectCard
+            v-for="project in homePageData.homepage.homeProjects.highlightedProjects.nodes"
+            :key="project.id"
+            :slug="project.slug"
+            :title="project.title"
+            :excerpt="project.excerpt"
+            :year="project.projectFields?.year"
+            :terms="project.terms"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div
       :id="t('homepage.scenarioSelection.verbose')"
       class="container mx-auto lg:pt-32 px-8 space-y-16"
     >

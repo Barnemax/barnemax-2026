@@ -2,8 +2,6 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  srcDir: 'src/',
-  serverDir: 'src/server',
   modules: [
     '@nuxt/eslint',
     '@nuxt/image',
@@ -28,6 +26,12 @@ export default defineNuxtConfig({
   site: {
     url: process.env.NUXT_PUBLIC_SITE_URL || 'https://barnemax.com',
   },
+  ui: {
+    colorMode: false,
+    theme: {
+      colors: ['primary', 'neutral'],
+    },
+  },
   runtimeConfig: {
     brevoApiKey: process.env.NUXT_BREVO_API_KEY,
     mailReceiver: process.env.NUXT_MAIL_RECEIVER,
@@ -36,6 +40,8 @@ export default defineNuxtConfig({
       siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://barnemax.com',
     },
   },
+  srcDir: 'src/',
+  serverDir: 'src/server',
   routeRules: {
     '/api/contact': {
       security: {
@@ -155,11 +161,5 @@ export default defineNuxtConfig({
     addValidateEndpoint: true,
     secretKey: process.env.NUXT_TURNSTILE_SECRET_KEY,
     siteKey: process.env.NUXT_TURNSTILE_SITE_KEY,
-  },
-  ui: {
-    colorMode: false,
-    theme: {
-      colors: ['primary', 'neutral'],
-    },
   },
 })

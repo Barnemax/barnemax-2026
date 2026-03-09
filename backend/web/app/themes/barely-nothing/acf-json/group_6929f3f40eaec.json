@@ -52,6 +52,28 @@
             "graphql_non_null": 0
         },
         {
+            "key": "field_69af1b448515a",
+            "label": "Github URL",
+            "name": "github_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "show_in_graphql": 1,
+            "graphql_description": "",
+            "graphql_field_name": "githubUrl",
+            "graphql_non_null": 0
+        },
+        {
             "key": "field_696e96679859f",
             "label": "Designer",
             "name": "designer",
@@ -203,7 +225,9 @@
     "display_title": "",
     "show_in_graphql": 1,
     "graphql_field_name": "projectFields",
-    "map_graphql_types_from_location_rules": 0,
-    "graphql_types": "",
-    "modified": 1768857523
+    "map_graphql_types_from_location_rules": 1,
+    "graphql_types": [
+        "Project"
+    ],
+    "modified": 1773085049
 }
