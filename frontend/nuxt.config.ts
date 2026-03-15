@@ -1,4 +1,7 @@
 import tailwindcss from '@tailwindcss/vite'
+import cache from './config/cache'
+import redirects from './config/redirects'
+import securityRoutes from './config/security-routes'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -43,32 +46,9 @@ export default defineNuxtConfig({
   srcDir: 'src/',
   serverDir: 'src/server',
   routeRules: {
-    '/api/contact': {
-      security: {
-        rateLimiter: {
-          tokensPerInterval: 5,
-          interval: 300000, // 5 minutes
-        },
-      },
-    },
-    '/api/graphql': {
-      security: {
-        rateLimiter: {
-          tokensPerInterval: 30,
-          interval: 60000, // 1 minute
-        },
-      },
-    },
-    '/': { isr: 3600 * 12 }, // 12 hours
-    '/fr': { isr: 3600 * 12 },
-    '/contact': { isr: 3600 * 12 },
-    '/fr/contact': { isr: 3600 * 12 },
-    '/credits': { redirect: { to: '/', statusCode: 301 } },
-    '/project/**': { redirect: { to: '/projects/**', statusCode: 301 } },
-    '/projects': { isr: 3600 * 12 },
-    '/projects/**': { isr: 3600 * 12 },
-    '/fr/projets': { isr: 3600 * 12 },
-    '/fr/projets/**': { isr: 3600 * 12 },
+    ...cache,
+    ...redirects,
+    ...securityRoutes,
   },
   compatibilityDate: '2025-07-15',
   vite: {
@@ -85,7 +65,7 @@ export default defineNuxtConfig({
     display: 'swap',
     download: true,
     families: {
-      Geist: [400, 700, 800],
+      Geist: [400, 600, 700],
     },
   },
   i18n: {
