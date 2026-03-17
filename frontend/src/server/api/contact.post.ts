@@ -1,20 +1,4 @@
-import { z } from 'zod'
-
-const contactSchema = z.object({
-  email: z.email(),
-  message: z.string().min(10).max(5000),
-  subject: z.string().min(1).max(200),
-})
-
-// Simple HTML escape for email content
-function escapeHtml(text: string): string {
-  return text
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;')
-}
+import { contactSchema, escapeHtml } from '../utils/contact'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
@@ -30,7 +14,6 @@ export default defineEventHandler(async (event) => {
 
   const { email, subject, message } = result.data
 
-  // Escape user input to prevent HTML injection
   const sanitizedEmail = escapeHtml(email)
   const sanitizedSubject = escapeHtml(subject)
   const sanitizedMessage = escapeHtml(message)

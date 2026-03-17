@@ -107,6 +107,7 @@ export default defineNuxtConfig({
   },
   schemaOrg: {
     identity: {
+      image: 'https://media.barnemax.com/barnemax-logo.png',
       jobTitle: 'Full-Stack Developer',
       name: 'Maxime Etchebarne',
       sameAs: [
