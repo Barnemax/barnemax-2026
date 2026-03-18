@@ -5,7 +5,7 @@ import type { FormSubmitEvent } from '@nuxt/ui'
 const { getPageBySlug } = useWordPress()
 const { locale } = useI18n()
 
-const { data: contactPageData } = await useAsyncData(
+const { data: contactPageData, pending: contactPagePending } = await useAsyncData(
   `contact-page-${locale.value}`,
   () => getPageBySlug('contact-page', locale.value.toUpperCase()),
   {
@@ -20,6 +20,8 @@ if (contactPageData.value?.seo) {
     seoData: contactPageData.value.seo,
   })
 }
+
+const { contentRef } = useLocaleTransition(contactPagePending)
 
 const token = ref()
 const UInput = resolveComponent('UInput')
@@ -107,7 +109,7 @@ async function onSubmit(event: FormSubmitEvent<Record<string, string>>) {
 </script>
 
 <template>
-  <div class="py-16 text-center flex flex-col items-center">
+  <div ref="contentRef" class="pt-36 pb-16 text-center flex flex-col items-center">
     <div class="opacity-50 text-4xl font-bold">
       {{ t('contact.title') }}
     </div>

@@ -2,7 +2,7 @@
 const { getProjectsWithArchive } = useWordPress()
 const { locale, t } = useI18n()
 
-const { data } = await useAsyncData(
+const { data, pending } = await useAsyncData(
   `projects-with-archive-${locale.value}`,
   () => getProjectsWithArchive(locale.value.toUpperCase()),
   {
@@ -10,6 +10,8 @@ const { data } = await useAsyncData(
     watch: [locale],
   },
 )
+
+const { contentRef } = useLocaleTransition(pending)
 
 const activeTypes = ref<string[]>([])
 
@@ -51,7 +53,7 @@ if (archiveData.value?.seo) {
 </script>
 
 <template>
-  <div>
+  <div ref="contentRef" class="pt-20">
     <div class="flex flex-col items-center lg:items-start justify-center lg:justify-start lg:flex-row">
       <div class="opacity-50 text-4xl font-bold mb-2 lg:mb-6">
         <GeometricText :text="t('menu.projects')" />

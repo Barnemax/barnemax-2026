@@ -2,9 +2,10 @@
 import type { Homepage } from '~/types/wordpress'
 
 const { locale, t } = useI18n()
+const localePath = useLocalePath()
 const { getHomepage } = useWordPress()
 
-const { data: homePageData, error: homePageError } = await useAsyncData<Homepage>(
+const { data: homePageData, error: homePageError, pending: homePagePending } = await useAsyncData<Homepage>(
   `homepage-${locale.value}`,
   () => getHomepage(locale.value.toUpperCase()),
   {
@@ -23,6 +24,8 @@ if (homePageData.value?.seo) {
     seoData: homePageData.value.seo,
   })
 }
+
+const { contentRef } = useLocaleTransition(homePagePending)
 
 // Normalize sections for easier looping
 const sections = computed(() => {
@@ -53,7 +56,7 @@ const sections = computed(() => {
 </script>
 
 <template>
-  <div>
+  <div ref="contentRef">
     <div class="h-screen">
       <div class="absolute inset-0 flex flex-col justify-center items-center text-center px-4">
         <h1 class="tracking-wide text-4xl lg:text-7xl font-bold mb-4 transition-colors hover:text-white">
@@ -147,7 +150,7 @@ const sections = computed(() => {
           </h2>
           <NuxtLink
             v-if="homePageData.homepage.homeProjects.linkToArchive"
-            :href="homePageData.homepage.homeProjects.linkToArchive.url"
+            :to="localePath('/projects')"
             :target="homePageData.homepage.homeProjects.linkToArchive.target"
             class="font-bold flex flex-row items-center hover:underline hover:text-white transition-colors"
           >
