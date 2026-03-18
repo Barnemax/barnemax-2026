@@ -18,3 +18,7 @@ backend/auth.json
 
 
 backend/web/app/wflogs/
+
+# Claude Code & Playwright MCP
+.claude/
+.playwright-mcp/

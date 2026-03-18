@@ -5,57 +5,12 @@ import securityRoutes from './config/security-routes'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: [
-    '@nuxt/eslint',
-    '@nuxt/image',
-    '@nuxt/ui',
-    '@nuxtjs/google-fonts',
-    '@nuxtjs/i18n',
-    '@nuxtjs/robots',
-    '@nuxtjs/sitemap',
-    '@nuxtjs/turnstile',
-    'nuxt-schema-org',
-    'nuxt-security',
-  ],
-  devtools: { enabled: true }, app: {
-    pageTransition: { mode: 'out-in', name: 'page' },
-  },
-  css: ['./assets/css/main.css'],
-  router: {
-    options: {
-      scrollBehaviorType: 'smooth',
-    },
-  },
-  site: {
-    url: process.env.NUXT_PUBLIC_SITE_URL || 'https://barnemax.com',
-  },
-  ui: {
-    colorMode: false,
-    theme: {
-      colors: ['primary', 'neutral'],
-    },
-  },
-  runtimeConfig: {
-    brevoApiKey: process.env.NUXT_BREVO_API_KEY,
-    mailReceiver: process.env.NUXT_MAIL_RECEIVER,
-    wpGraphqlUrl: process.env.NUXT_WP_GRAPHQL_URL,
-    public: {
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://barnemax.com',
-    },
-  },
-  srcDir: 'src/',
-  serverDir: 'src/server',
-  routeRules: {
-    ...cache,
-    ...redirects,
-    ...securityRoutes,
+  app: {
+    pageTransition: { mode: 'out-in', name: 'fade' },
   },
   compatibilityDate: '2025-07-15',
-  vite: {
-    plugins: [
-      tailwindcss(),
-    ],
-  },
+  css: ['./assets/css/main.css'],
+  devtools: { enabled: true },
   eslint: {
     config: {
       stylistic: true,
@@ -73,7 +28,6 @@ export default defineNuxtConfig({
     customRoutes: 'config',
     defaultLocale: 'en',
     langDir: 'locales',
-    restructureDir: 'src/i18n',
     locales: [{
       code: 'en',
       file: 'en.ts',
@@ -99,11 +53,42 @@ export default defineNuxtConfig({
         fr: '/projets',
       },
     },
+    restructureDir: 'src/i18n',
     strategy: 'prefix_except_default',
   },
+  modules: [
+    '@nuxt/eslint',
+    '@nuxt/image',
+    '@nuxt/ui',
+    '@nuxtjs/google-fonts',
+    '@nuxtjs/i18n',
+    '@nuxtjs/robots',
+    '@nuxtjs/sitemap',
+    '@nuxtjs/turnstile',
+    'nuxt-schema-org',
+    'nuxt-security',
+  ],
   robots: {
     blockAiBots: true,
     blockNonSeoBots: true,
+  },
+  router: {
+    options: {
+      scrollBehaviorType: 'smooth',
+    },
+  },
+  routeRules: {
+    ...(process.env.NODE_ENV !== 'development' ? cache : {}),
+    ...redirects,
+    ...securityRoutes,
+  },
+  runtimeConfig: {
+    brevoApiKey: process.env.NUXT_BREVO_API_KEY,
+    mailReceiver: process.env.NUXT_MAIL_RECEIVER,
+    public: {
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://barnemax.com',
+    },
+    wpGraphqlUrl: process.env.NUXT_WP_GRAPHQL_URL,
   },
   schemaOrg: {
     identity: {
@@ -135,12 +120,28 @@ export default defineNuxtConfig({
       xFrameOptions: 'SAMEORIGIN',
     },
   },
+  serverDir: 'src/server',
+  site: {
+    url: process.env.NUXT_PUBLIC_SITE_URL || 'https://barnemax.com',
+  },
   sitemap: {
     sources: ['/api/__sitemap__/urls'],
   },
+  srcDir: 'src/',
   turnstile: {
     addValidateEndpoint: true,
     secretKey: process.env.NUXT_TURNSTILE_SECRET_KEY,
     siteKey: process.env.NUXT_TURNSTILE_SITE_KEY,
+  },
+  ui: {
+    colorMode: false,
+    theme: {
+      colors: ['primary', 'neutral'],
+    },
+  },
+  vite: {
+    plugins: [
+      tailwindcss(),
+    ],
   },
 })

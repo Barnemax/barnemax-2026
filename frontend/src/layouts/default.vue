@@ -1,9 +1,5 @@
 <script setup="ts">
 const localePath = useLocalePath()
-const route = useRoute()
-const { locale } = useI18n()
-
-const isHomepage = computed(() => route.path === '/' || route.path === '/en' || route.path === '/fr')
 
 const { isMenuOpen } = useMobileMenu()
 const isHeaderVisible = ref(true)
@@ -46,14 +42,10 @@ onUnmounted(() => {
     </header>
 
     <main
-      :class="isHomepage ? 'pb-20' : 'py-20'"
+      class="pb-20"
     >
       <div class="container mx-auto px-8">
-        <Transition name="fade" mode="out-in">
-          <div :key="locale">
-            <slot />
-          </div>
-        </Transition>
+        <slot />
       </div>
     </main>
     <footer class="mt-auto p-4 border-t border-border text-center text-sm opacity-50">

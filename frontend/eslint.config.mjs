@@ -18,4 +18,10 @@ export default withNuxt(
       'vue/script-indent': ['error', 2, { baseIndent: 0 }],
     },
   },
+  {
+    files: ['nuxt.config.ts'],
+    rules: {
+      'nuxt/nuxt-config-keys-order': 'off',
+    },
+  },
 )

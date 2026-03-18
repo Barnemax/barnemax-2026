@@ -20,6 +20,7 @@ useHead({
 
 <template>
   <UApp :locale="locales[locale]">
+    <NuxtLoadingIndicator color="var(--color-primary)" />
     <CustomCursor />
     <NuxtLayout>
       <NuxtPage />
