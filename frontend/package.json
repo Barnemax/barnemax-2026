@@ -11,7 +11,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "gen:fragments": "acf-json-to-graphql --path ../backend/web/app/themes/barely-nothing/acf-json --out ./src/graphql/fragments --all"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.98",
@@ -39,6 +40,7 @@
   },
   "devDependencies": {
     "@types/node": "^24.12.0",
+    "acf-json-to-graphql": "^0.1.1",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "vitest": "^4.1.0"
