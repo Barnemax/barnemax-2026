@@ -191,7 +191,7 @@ watch(projectData, (project) => {
         <div class="lg:col-span-2">
           <div
             v-dompurify-html="projectData.content"
-            class="wysiwyg-content prose prose-invert space-y-2 text-lg"
+            class="wysiwyg-content space-y-6 text-lg"
           />
         </div>
       </div>

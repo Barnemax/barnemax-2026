@@ -104,7 +104,7 @@
     }
 
     a {
-        @apply opacity-75 hover:opacity-100 hover:underline;
+        @apply opacity-75 underline hover:opacity-100;
     }
 }
 
