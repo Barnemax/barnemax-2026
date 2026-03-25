@@ -1,16 +1,15 @@
 <script setup lang="ts">
-const { locale, setLocale, t } = useI18n()
+const { locale, locales, setLocale, t } = useI18n()
 
-const locales = [
-  { label: 'English', value: 'en' },
-  { label: 'Français', value: 'fr' },
-]
+const localeItems = computed(() =>
+  locales.value.map(l => ({ label: l.name ?? l.code, value: l.code })),
+)
 </script>
 
 <template>
   <USelect
     :model-value="locale"
-    :items="locales"
+    :items="localeItems"
     value-key="value"
     :aria-label="t('accessibility.languageSwitcher')"
     :title="t('accessibility.languageSwitcher')"

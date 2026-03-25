@@ -140,6 +140,9 @@ export default defineNuxtConfig({
     },
   },
   vite: {
+    optimizeDeps: {
+      include: ['vue-dompurify-html', 'zod'],
+    },
     plugins: [
       tailwindcss(),
     ],

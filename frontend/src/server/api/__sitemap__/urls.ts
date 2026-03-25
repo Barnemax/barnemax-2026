@@ -1,4 +1,4 @@
-import { defineSitemapEventHandler } from '#imports'
+import type { SitemapUrlInput } from '@nuxtjs/sitemap'
 
 const GET_PROJECTS_FOR_SITEMAP = `
   query GetProjectsForSitemap {
@@ -30,7 +30,7 @@ interface SitemapResponse {
 export default defineSitemapEventHandler(async () => {
   const config = useRuntimeConfig()
 
-  const urls: Array<{ loc: string, lastmod?: string, priority?: number }> = []
+  const urls: SitemapUrlInput[] = []
 
   // Static pages
   urls.push(
