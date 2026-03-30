@@ -44,18 +44,19 @@ const heartbeat = (t: number, ringIndex: number, totalRings: number): number => 
     // First beat (lub) - smooth rise and fall
     const p = phase / 0.12
     const curve = p < 0.5 ? easeInOutCubic(p * 2) : easeInOutCubic((1 - p) * 2)
+
     return curve * 0.8
-  }
-  else if (phase < 0.18) {
+  } else if (phase < 0.18) {
     // Brief pause between beats
     return 0
-  }
-  else if (phase < 0.3) {
+  } else if (phase < 0.3) {
     // Second beat (dub) - smooth and slightly smaller
     const p = (phase - 0.18) / 0.12
     const curve = p < 0.5 ? easeInOutCubic(p * 2) : easeInOutCubic((1 - p) * 2)
+
     return curve * 0.5
   }
+
   // Rest of cycle
   return 0
 }
@@ -76,7 +77,9 @@ const scheduleNextGlow = () => {
 
 const draw = (timestamp: number) => {
   const canvas = canvasRef.value
-  if (!canvas || !canvasCtx) return
+  if (!canvas || !canvasCtx) {
+    return
+  }
 
   // Update glow fade from main loop (replaces separate rAF)
   if (isGlowing.value) {
@@ -118,10 +121,13 @@ const draw = (timestamp: number) => {
 }
 
 const animate = (timestamp: number) => {
-  if (!isActive) return
+  if (!isActive) {
+    return
+  }
 
   if (timestamp - lastFrame < frameInterval) {
     animationId = requestAnimationFrame(animate)
+
     return
   }
   lastFrame = timestamp
@@ -138,11 +144,15 @@ const stopAnimation = () => {
     cancelAnimationFrame(animationId)
     animationId = null
   }
-  if (glowTimer) clearTimeout(glowTimer)
+  if (glowTimer) {
+    clearTimeout(glowTimer)
+  }
 }
 
 const startAnimation = () => {
-  if (isActive) return
+  if (isActive) {
+    return
+  }
   isActive = true
   scheduleNextGlow()
   animationId = requestAnimationFrame(animate)
@@ -151,15 +161,16 @@ const startAnimation = () => {
 const onVisibilityChange = () => {
   if (document.hidden) {
     stopAnimation()
-  }
-  else {
+  } else {
     startAnimation()
   }
 }
 
 const resize = () => {
   const canvas = canvasRef.value
-  if (!canvas || !isReady.value) return
+  if (!canvas || !isReady.value) {
+    return
+  }
 
   const rect = canvas.getBoundingClientRect()
   if (rect.width > 0 && rect.height > 0) {

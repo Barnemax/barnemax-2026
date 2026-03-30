@@ -5,7 +5,9 @@ export function useLocaleTransition(pending: Ref<boolean>) {
   const contentRef = ref<HTMLDivElement | null>(null)
 
   const reveal = () => {
-    if (!contentRef.value) return
+    if (!contentRef.value) {
+      return
+    }
     void contentRef.value.offsetHeight
     contentRef.value.classList.remove('locale-loading')
   }
@@ -21,7 +23,9 @@ export function useLocaleTransition(pending: Ref<boolean>) {
 
   // Reveal after async fetch completes (covers same-page locale reload without navigation)
   watch(pending, (isPending) => {
-    if (isPending) return
+    if (isPending) {
+      return
+    }
     nextTick(() => reveal())
   })
 

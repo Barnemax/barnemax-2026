@@ -19,7 +19,9 @@ export function useAnimationTick(callback: TickCallback, interval = 300) {
   let intervalId: ReturnType<typeof setInterval> | null = null
 
   const start = () => {
-    if (intervalId) return
+    if (intervalId) {
+      return
+    }
     intervalId = setInterval(() => {
       if (isInViewport.value) {
         callback()
@@ -37,8 +39,7 @@ export function useAnimationTick(callback: TickCallback, interval = 300) {
   const onVisibilityChange = () => {
     if (document.hidden) {
       stop()
-    }
-    else {
+    } else {
       start()
     }
   }

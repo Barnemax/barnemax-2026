@@ -87,6 +87,7 @@ async function onSubmit(event: FormSubmitEvent<Record<string, string>>) {
   if (!response.ok) {
     isSubmitting.value = false
     errorMessage.value = t('contact.errorMessage')
+
     return
   }
 
@@ -100,6 +101,7 @@ async function onSubmit(event: FormSubmitEvent<Record<string, string>>) {
   if (!emailResponse.ok) {
     isSubmitting.value = false
     errorMessage.value = t('contact.errorMessage')
+
     return
   }
 

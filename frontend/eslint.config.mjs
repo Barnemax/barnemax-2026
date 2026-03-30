@@ -4,6 +4,12 @@ import withNuxt from './.nuxt/eslint.config.mjs'
 export default withNuxt(
   {
     rules: {
+      '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: false }],
+      'curly': ['error', 'all'],
+      'padding-line-between-statements': [
+        'error',
+        { blankLine: 'always', next: 'return', prev: '*' },
+      ],
       'sort-keys': ['error', 'asc', { caseSensitive: false, natural: true }],
       'vue/html-closing-bracket-newline': ['error', {
         multiline: 'always',

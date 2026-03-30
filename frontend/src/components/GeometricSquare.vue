@@ -13,10 +13,14 @@ let animationSeed = props.seed
 
 const draw = () => {
   const canvas = canvasRef.value
-  if (!canvas || !canvasCtx) return
+  if (!canvas || !canvasCtx) {
+    return
+  }
 
   const s = canvas.width
-  if (s === 0) return
+  if (s === 0) {
+    return
+  }
 
   const cellSize = s / 3
   const r = cellSize * 0.2
@@ -43,7 +47,9 @@ const { elementRef } = useAnimationTick(() => {
 
 onMounted(() => {
   const canvas = canvasRef.value
-  if (!canvas) return
+  if (!canvas) {
+    return
+  }
 
   // Size canvas to match element
   const rect = canvas.getBoundingClientRect()

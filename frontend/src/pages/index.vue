@@ -30,7 +30,9 @@ const { contentRef } = useLocaleTransition(homePagePending)
 // Normalize sections for easier looping
 const sections = computed(() => {
   const hp = homePageData.value?.homepage
-  if (!hp) return []
+  if (!hp) {
+    return []
+  }
 
   return [
     {

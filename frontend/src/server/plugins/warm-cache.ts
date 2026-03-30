@@ -2,7 +2,9 @@ import { GET_HOMEPAGE } from '../../graphql/queries/pages'
 import { GET_PROJECTS_WITH_ARCHIVE } from '../../graphql/queries/projects'
 
 export default defineNitroPlugin(async () => {
-  if (import.meta.dev) return
+  if (import.meta.dev) {
+    return
+  }
 
   const warmupQueries = [
     { query: GET_HOMEPAGE, variables: { language: 'EN' } },

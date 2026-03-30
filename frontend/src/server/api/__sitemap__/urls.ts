@@ -69,8 +69,7 @@ export default defineSitemapEventHandler(async () => {
         priority: 0.7,
       })
     }
-  }
-  catch (error) {
+  } catch (error) {
     console.error('Sitemap: Failed to fetch projects', error)
   }
 

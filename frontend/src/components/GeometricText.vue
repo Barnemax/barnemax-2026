@@ -35,7 +35,9 @@ let animationSeed = 0
 
 const drawDots = () => {
   const canvas = canvasRef.value
-  if (!canvas || !canvasCtx) return
+  if (!canvas || !canvasCtx) {
+    return
+  }
 
   // Sync canvas pixel size with display size
   const rect = canvas.getBoundingClientRect()
@@ -91,7 +93,9 @@ const { elementRef } = useAnimationTick(() => {
 
 // Draw immediately when dots become visible (don't wait for next 400ms tick)
 watch(dotsVisible, (visible) => {
-  if (visible) drawDots()
+  if (visible) {
+    drawDots()
+  }
 })
 
 // =============================================================================
@@ -101,7 +105,9 @@ watch(dotsVisible, (visible) => {
 let intervalId: ReturnType<typeof setInterval> | null = null
 
 const startInterval = () => {
-  if (intervalId) return
+  if (intervalId) {
+    return
+  }
   intervalId = setInterval(() => {
     showDots.value = true
     setTimeout(() => {
@@ -134,8 +140,7 @@ onMounted(() => {
       isVisible.value = entries[0]?.isIntersecting ?? false
       if (isVisible.value) {
         startInterval()
-      }
-      else {
+      } else {
         stopInterval()
       }
     },

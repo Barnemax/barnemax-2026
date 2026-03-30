@@ -12,6 +12,7 @@ const navItems = computed(() => [
 
 const isActiveRoute = (name: string) => {
   const routeName = route.name?.toString() || ''
+
   return routeName === name || routeName.startsWith(`${name}-`)
 }
 

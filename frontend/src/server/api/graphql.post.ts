@@ -21,6 +21,7 @@ export default defineCachedEventHandler(async (event) => {
   getKey: async (event) => {
     const body = await readBody(event)
     event.context.parsedBody = body
+
     return hash(body)
   },
   maxAge: 3600 * 12,

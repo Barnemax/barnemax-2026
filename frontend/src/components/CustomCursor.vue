@@ -8,16 +8,21 @@ onMounted(async () => {
   const isTouch = 'ontouchstart' in window || window.innerWidth < 1024
   if (isTouch) {
     isMobile.value = true
+
     return
   }
 
   await nextTick()
 
   const canvas = canvasRef.value
-  if (!canvas) return
+  if (!canvas) {
+    return
+  }
 
   const ctx = canvas.getContext('2d')
-  if (!ctx) return
+  if (!ctx) {
+    return
+  }
 
   const resizeCanvas = () => {
     canvas.width = window.innerWidth
@@ -54,7 +59,9 @@ onMounted(async () => {
     isInactive = false
 
     // Reset inactivity timer
-    if (inactivityTimer) clearTimeout(inactivityTimer)
+    if (inactivityTimer) {
+      clearTimeout(inactivityTimer)
+    }
     inactivityTimer = setTimeout(() => {
       isInactive = true
     }, 200)
@@ -87,6 +94,7 @@ onMounted(async () => {
   const isIdle = () => {
     // Cursor has converged to mouse position and is fully transparent
     const settled = Math.abs(mouseX - circleX) < 0.5 && Math.abs(mouseY - circleY) < 0.5
+
     return settled && cursorOpacity < 0.01 && !isRippling
   }
 
@@ -129,8 +137,7 @@ onMounted(async () => {
           ctx.strokeStyle = `rgba(255, 255, 255, ${rippleOpacity})`
           ctx.lineWidth = 1.5
           ctx.stroke()
-        }
-        else {
+        } else {
           isRippling = false
         }
       }
@@ -151,6 +158,7 @@ onMounted(async () => {
       // One final clear to remove any remnants
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       animationId = null
+
       return
     }
 
@@ -161,8 +169,7 @@ onMounted(async () => {
     isTabVisible = !document.hidden
     if (isTabVisible) {
       ensureAnimating()
-    }
-    else {
+    } else {
       stopAnimating()
     }
   }
@@ -173,7 +180,9 @@ onMounted(async () => {
 
   cleanup = () => {
     stopAnimating()
-    if (inactivityTimer) clearTimeout(inactivityTimer)
+    if (inactivityTimer) {
+      clearTimeout(inactivityTimer)
+    }
     window.removeEventListener('resize', resizeCanvas)
     window.removeEventListener('mousemove', onMouseMove)
     window.removeEventListener('mousedown', onMouseDown)

@@ -23,6 +23,7 @@ const typeOptions = computed(() => {
   return unique
     .map((t) => {
       const count = projects.filter(p => p.terms?.nodes?.some(term => term.id === t.id)).length
+
       return { count, label: `${t.name} (${count})`, value: t.id }
     })
     .sort((a, b) => b.count - a.count)
