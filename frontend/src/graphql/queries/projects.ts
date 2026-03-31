@@ -73,7 +73,7 @@ const seoFields = `
 
 export const GET_PROJECTS_WITH_ARCHIVE = `
   query GetProjectsWithArchive($language: LanguageCodeFilterEnum!) {
-    projects(first: 20, where: { language: $language }) {
+    projects(first: 12, where: { language: $language }) {
       nodes {
         ${wpFields}
         ${taxonomyFields}

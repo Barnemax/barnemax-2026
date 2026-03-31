@@ -11,7 +11,7 @@ const { setProjectSchema } = useSchema()
 const currentSlug = computed(() => String(route.params.slug))
 const currentLocale = computed(() => locale.value.toUpperCase())
 
-const { data, pending, error } = useAsyncData(
+const { data, pending, error } = await useAsyncData(
   `project-${route.params.slug}-${locale.value}`,
   () => getProjectBySlug(currentSlug.value, currentLocale.value),
   {
