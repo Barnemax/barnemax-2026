@@ -1,10 +1,25 @@
 import { contactSchema, escapeHtml } from '../utils/contact'
 
 export default defineEventHandler(async (event) => {
-  const body = await readBody(event)
+  const { token, ...contactData } = await readBody(event)
   const config = useRuntimeConfig()
 
-  const result = contactSchema.safeParse(body)
+  if (!token) {
+    throw createError({
+      statusCode: 422,
+      statusMessage: 'Token not provided.',
+    })
+  }
+
+  const turnstileResult = await verifyTurnstileToken(token)
+  if (!turnstileResult.success) {
+    throw createError({
+      statusCode: 403,
+      statusMessage: 'Invalid token.',
+    })
+  }
+
+  const result = contactSchema.safeParse(contactData)
   if (!result.success) {
     throw createError({
       statusCode: 400,

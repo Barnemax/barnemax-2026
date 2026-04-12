@@ -71,29 +71,8 @@ async function onSubmit(event: FormSubmitEvent<Record<string, string>>) {
   isSubmitting.value = true
   errorMessage.value = null
 
-  // Need to validate Turnstile token here
-  const bodyVerify = {
-    token: String(token.value),
-  }
-
-  const response = await fetch('/_turnstile/validate', {
-    body: JSON.stringify(bodyVerify),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    method: 'POST',
-  })
-
-  if (!response.ok) {
-    isSubmitting.value = false
-    errorMessage.value = t('contact.errorMessage')
-
-    return
-  }
-
-  // Send mail via server API
   const emailResponse = await fetch('/api/contact', {
-    body: JSON.stringify(event.data),
+    body: JSON.stringify({ ...event.data, token: token.value }),
     headers: { 'Content-Type': 'application/json' },
     method: 'POST',
   })
