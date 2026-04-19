@@ -17,6 +17,9 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   css: ['./assets/css/main.css'],
   devtools: { enabled: true },
+  dir: {
+    public: 'src/public',
+  },
   eslint: {
     config: {
       stylistic: true,
