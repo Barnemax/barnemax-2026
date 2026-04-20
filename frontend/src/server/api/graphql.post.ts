@@ -10,7 +10,16 @@ export default defineCachedEventHandler(async (event) => {
     method: 'POST',
   })
 
-  const json = await response.json()
+  const text = await response.text()
+
+  if (!response.ok || !text) {
+    throw createError({
+      message: `WP GraphQL ${response.status} ${response.statusText}`.trim(),
+      statusCode: 502,
+    })
+  }
+
+  const json = JSON.parse(text)
 
   if (json.errors) {
     throw createError({ message: json.errors[0].message, statusCode: 400 })

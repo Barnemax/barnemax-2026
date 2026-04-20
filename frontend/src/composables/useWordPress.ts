@@ -19,6 +19,19 @@ export function pickOtherProject<T extends { slug: string }>(projects: T[], curr
 
 export const useWordPress = () => {
   const graphqlClient = async <T>(query: string, variables = {}): Promise<T> => {
+    if (import.meta.server) {
+      const config = useRuntimeConfig()
+      const res = await $fetch<{ data: T, errors?: Array<{ message: string }> }>(
+        config.wpGraphqlUrl as string,
+        { body: { query, variables }, method: 'POST' },
+      )
+      if (res.errors?.length) {
+        throw new Error(res.errors[0]!.message)
+      }
+
+      return res.data
+    }
+
     return await $fetch<T>('/api/graphql', {
       body: { query, variables },
       method: 'POST',

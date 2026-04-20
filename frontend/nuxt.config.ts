@@ -77,6 +77,15 @@ export default defineNuxtConfig({
     'nuxt-schema-org',
     'nuxt-security',
   ],
+  nitro: {
+    prerender: {
+      concurrency: 1,
+      crawlLinks: true,
+      failOnError: false,
+      interval: 50,
+      routes: ['/', '/fr', '/projects', '/fr/projets', '/contact', '/fr/contact'],
+    },
+  },
   robots: {
     blockAiBots: true,
     blockNonSeoBots: true,
