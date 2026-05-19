@@ -74,7 +74,6 @@ export const useWordPress = () => {
     const data = await graphqlClient<ProjectsWithArchiveResponse>(GET_PROJECTS_WITH_ARCHIVE, { language })
 
     return {
-      archive: data.contentType ?? null,
       projects: data.projects?.nodes ?? [],
     }
   }

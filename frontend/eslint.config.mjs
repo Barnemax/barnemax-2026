@@ -28,6 +28,7 @@ export default withNuxt(
     files: ['nuxt.config.ts'],
     rules: {
       'nuxt/nuxt-config-keys-order': 'off',
+      'sort-keys': 'off',
     },
   },
 )

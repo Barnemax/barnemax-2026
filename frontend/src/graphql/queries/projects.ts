@@ -78,16 +78,6 @@ export const GET_PROJECTS_WITH_ARCHIVE = `
         ${wpFields}
         ${taxonomyFields}
         ${acfFields}
-        ${seoFields}
-      }
-    }
-    contentType(id: "project", idType: NAME) {
-      label
-      name
-      seo {
-        description
-        fullHead
-        title
       }
     }
   }

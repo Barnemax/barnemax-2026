@@ -47,6 +47,8 @@ export default {
   },
   projects: {
     archive: {
+      seoDescription: 'Selection of works that I realized over the last years.',
+      seoTitle: 'Projects',
       tagline: 'Selected works',
     },
     collaboration: 'A collaboration with:',

@@ -43,14 +43,12 @@ const filteredProjects = computed(() => {
   )
 })
 
-const archiveData = computed(() => data.value?.archive)
-
-if (archiveData.value?.seo) {
-  useSeo({
-    fallbackTitle: t('menu.projects'),
-    seoData: archiveData.value.seo,
-  })
-}
+useSeo(() => ({
+  seoData: {
+    description: t('projects.archive.seoDescription'),
+    title: formatSeoTitle(t('projects.archive.seoTitle')),
+  },
+}))
 </script>
 
 <template>

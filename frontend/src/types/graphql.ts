@@ -1,4 +1,3 @@
-import type { SeoFields } from './seo'
 import type { DefaultWPStructure, Homepage, Project } from './wordpress'
 
 export interface PageResponse {
@@ -26,11 +25,6 @@ export interface ProjectsResponse {
 }
 
 export interface ProjectsWithArchiveResponse {
-  contentType: {
-    label: string
-    name: string
-    seo: SeoFields
-  }
   projects: {
     nodes: Project[]
   }

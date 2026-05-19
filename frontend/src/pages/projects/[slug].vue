@@ -51,12 +51,13 @@ const breadcrumbItems = computed<BreadcrumbItem[]>(() => {
 
 const { contentRef } = useLocaleTransition(pending)
 
+useSeo(() => ({
+  fallbackTitle: projectData.value?.title,
+  seoData: projectData.value?.seo,
+}))
+
 watch(projectData, (project) => {
-  if (project?.seo) {
-    useSeo({
-      fallbackTitle: project.title,
-      seoData: project.seo,
-    })
+  if (project) {
     setProjectSchema(project)
   }
 }, { immediate: true })

@@ -14,12 +14,10 @@ const { data: contactPageData, pending: contactPagePending } = await useAsyncDat
   },
 )
 
-if (contactPageData.value?.seo) {
-  useSeo({
-    fallbackTitle: 'Contact Page',
-    seoData: contactPageData.value.seo,
-  })
-}
+useSeo(() => ({
+  fallbackTitle: 'Contact Page',
+  seoData: contactPageData.value?.seo,
+}))
 
 const { contentRef } = useLocaleTransition(contactPagePending)
 

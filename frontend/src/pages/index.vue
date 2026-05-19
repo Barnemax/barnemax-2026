@@ -18,12 +18,10 @@ if (import.meta.dev && homePageError.value) {
   console.error('Homepage fetch error:', homePageError.value)
 }
 
-if (homePageData.value?.seo) {
-  useSeo({
-    fallbackTitle: 'Homepage',
-    seoData: homePageData.value.seo,
-  })
-}
+useSeo(() => ({
+  fallbackTitle: 'Homepage',
+  seoData: homePageData.value?.seo,
+}))
 
 const { contentRef } = useLocaleTransition(homePagePending)
 
