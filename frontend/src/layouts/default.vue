@@ -5,6 +5,8 @@ const { isMenuOpen } = useMobileMenu()
 const isHeaderVisible = ref(true)
 const lastScrollY = ref(0)
 
+const footerSocials = Object.values(SOCIAL_LINKS)
+
 const onScroll = () => {
   const currentScrollY = window.scrollY
   isHeaderVisible.value = currentScrollY < lastScrollY.value || currentScrollY < 100
@@ -48,8 +50,24 @@ onUnmounted(() => {
         <slot />
       </div>
     </main>
-    <footer class="mt-auto p-4 border-t border-border text-center text-sm opacity-50">
-      &copy; 2017 - {{ new Date().getFullYear() }} barnemax
+    <footer class="mt-auto border-t border-border text-sm">
+      <div class="container mx-auto px-8 py-4 flex flex-col items-center gap-2 sm:flex-row sm:justify-between">
+        <p class="opacity-50">
+          &copy; barnemax 2017 - {{ new Date().getFullYear() }}
+        </p>
+        <ul class="flex items-center gap-4">
+          <li v-for="social in footerSocials" :key="social.label">
+            <a
+              :href="social.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="opacity-50 transition-opacity hover:opacity-100"
+            >
+              {{ social.label }}
+            </a>
+          </li>
+        </ul>
+      </div>
     </footer>
   </div>
 </template>

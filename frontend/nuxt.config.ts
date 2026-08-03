@@ -2,6 +2,7 @@ import tailwindcss from '@tailwindcss/vite'
 import cache from './config/cache'
 import redirects from './config/redirects'
 import securityRoutes from './config/security-routes'
+import { SOCIAL_PROFILE_URLS } from './src/utils/social'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -113,11 +114,7 @@ export default defineNuxtConfig({
       image: 'https://media.barnemax.com/barnemax-logo.png',
       jobTitle: 'Full-Stack Developer',
       name: 'Maxime Etchebarne',
-      sameAs: [
-        'https://github.com/barnemax',
-        'https://linkedin.com/in/barnemax',
-        'https://www.instagram.com/barnemax_/',
-      ],
+      sameAs: SOCIAL_PROFILE_URLS,
       type: 'Person',
       url: 'https://barnemax.com',
     },
